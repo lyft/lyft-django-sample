@@ -114,6 +114,7 @@ Deploying to Heroku is even easier. The defaults in settings.py are pre-configur
 
 	- SOCIAL_AUTH_LYFT_KEY
 	- SOCIAL_AUTH_LYFT_SECRET
+	- GOOGLE_MAPS_JAVASCRIPT_KEY
 
 - After deploying, in the Lyft App config, ensure the Callback URL is `http://your-app-name.herokuapp.com/complete/lyft`
 

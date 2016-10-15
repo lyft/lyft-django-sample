@@ -13,7 +13,7 @@ types of integrations, including:
 
 As always, when developing on top of the Lyft platform, you must abide by the [Developer Agreement & Policy](https://s3.amazonaws.com/lyft-common/publicapi/production/swaggers/lyft-api-terms.pdf).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/ryankicks/lyft-example)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/lyft/lyft-django-sample)
 
 Requirements
 ============
@@ -47,7 +47,7 @@ Getting Started
 - Specify your Lyft API credentials in app/settings_my.py under the following section:
 
     SOCIAL_AUTH_LYFT_KEY = ''
-    
+
     SOCIAL_AUTH_LYFT_SECRET = ''
 
 - Specify your Google Maps Javascript key in app/settings_my.py under the following section:
@@ -57,19 +57,19 @@ Getting Started
 - To initialize your database, run the from the `lyft-example` directory:
 
   `python manage.py makemigrations --settings=app.settings_my`
-  
+
   Then run:
-  
+
   `python manage.py migrate --settings=app.settings_my`
-  
+
 - Create an admin user for the Django admin by running the following:
-  
+
   `python manage.py createsuperuser --settings=app.settings_my`
-  
+
 - To start the server, run the following from the `lyft-example` directory:
 
   `fab start`
-  
+
 - Open a browser and go to http://127.0.0.1:9000
 
 Restricting Django Admin Access
@@ -79,24 +79,24 @@ This code sample allows for restriction of Django admin based on IP. To enable t
 
 - Run the migration for this as follows:
 
-  `python manage.py makemigrations adminrestrict --settings=app.settings_my` 
-  
+  `python manage.py makemigrations adminrestrict --settings=app.settings_my`
+
   Then:
-  
+
   `python manage.py migrate adminrestrict --settings=app.settings_my
 
-- Log in as the Admin user and create a * record in the adminrestrict.allowed_ip table. 
+- Log in as the Admin user and create a * record in the adminrestrict.allowed_ip table.
 
 - Lastly, uncomment the following from the MIDDLEWARE_CLASSES section in settings.py:
 
    `adminrestrict.middleware.AdminPagesRestrictMiddleware`
 
-Invalidate Lyft tokens 
+Invalidate Lyft tokens
 --------
 
 For security, this code sample has a batch process to clear out Lyft auth tokens for users that either:
 
-- Have a login of greater than 30 days ago, or 
+- Have a login of greater than 30 days ago, or
 - Have never logged in and joined greater than 30 days ago
 
 To run the process, simply execute:
@@ -120,18 +120,18 @@ Deploying to Heroku is even easier. The defaults in settings.py are pre-configur
 - To sync the database, use the Heroku CLI and run the following:
 
 	`heroku run python manage.py migrate --app your-app-name`
-	
+
 - Open a browser and go to the URL specified by your deploy (http://your-app-name.herokuapp.com)
 
 - To create an admin user, use the following Heroku CLI command:
 
 	`heroku run python manage.py createsuperuser --username=USERNAME --email=EMAIL --app your-app-name`
-	
-Then log in via the Admin console and update your initial Lyft login user accordingly. 
+
+Then log in via the Admin console and update your initial Lyft login user accordingly.
 
 - Open a browser and go to the URL specified by your deploy (http://your-app-name.herokuapp.com)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/ryankicks/lyft-example)
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/lyft/lyft-django-sample)
 
 Invalidating Lyft tokens on Heroku
 --------

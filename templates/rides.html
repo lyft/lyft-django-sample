@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load jsonify %}
+
+{% block title %}Ride History{% endblock %}
+
+{% block content %}
+
+<h2>Ride History</h2>
+
+<p>This page shows a history of a given user's rides.
+Learn more about listing rides via our
+<a href="https://developer.lyft.com/docs/users-ride-history" target="_target">ride history</a> documentation.</p>
+
+
+<table class="table">
+  <tr>
+    <th>Date</th>
+    <th>Passenger</th>
+    <th>Type</th>
+    <th>Pickup</th>
+    <th>Dropoff</th>
+    <th>Vehicle</th>
+    <th>Price</th>
+  </tr>
+  {% if rides.ride_history.0 %}
+    {% for r in rides.ride_history %}
+    <tr>
+      <td>
+        {{ r.requested_at }}
+      </td>
+      <td>
+        <div class="pull-left">{{r.passenger.first_name}} {{r.passenger.last_name}}</div>
+        <img src="{{r.passenger.image_url}}" class="thumbnail pull-left" height="60">
+      </td>
+      <td>{{r.ride_type}}</td>
+      <td>{{r.pickup.address}}</td>
+      <td>{{r.dropoff.address}}</td>
+      <td>
+        <div class="pull-left">{{r.vehicle.license_plate}} {{r.vehicle.license_plate_state}}</div>
+        <br>
+        <img src="{{r.vehicle.image_url}}" class="thumbnail pull-left" height="60">
+      </td>
+      <td>{{r.price.amount}} {{r.price.currency}} ({{r.price.description}})</td>
+    </tr>
+    {% endfor %}
+  {% else %}
+    <tr>
+      <td colspan="6">No rides.</td>
+    </tr>
+  {% endif %}
+</table>
+
+<h3>Rides</h3>
+
+<div id="response_rides"></div>
+
+<script>
+  renderjson.set_show_to_level(4);
+  document.getElementById("response_rides").appendChild(
+    {% autoescape off %}
+      renderjson({{rides|jsonify}})
+    {% endautoescape %}
+  );
+</script>
+
+{% endblock %}

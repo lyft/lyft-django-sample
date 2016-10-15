@@ -1,0 +1,11 @@
+Django==1.9.1
+dj-database-url==0.3.0
+gunicorn==19.1.1
+psycopg2==2.5.1
+-e git://github.com/iampark/python-social-auth.git#egg=python-social-auth
+bravado
+pycrypto
+django-adminrestrict
+django-csp==2.0.3
+django-jsonify
+Fabric==1.7.0

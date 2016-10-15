@@ -1,0 +1,8 @@
+*.pyc
+.project
+.pydevproject
+app/settings_my.py
+**/.DS_Store
+.idea/
+fabfile.py
+db.sqlite3

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<h2>Lyft API Samples</h2>
+
+<p>This is a collection of API samples, covering common use cases such as:
+
+<ul>
+<li><a href="/availability">Availability</a>
+<li><a href="/rides">Ride History</a>
+<li><a href="/request">Request Ride</a>
+</ul>
+
+<b>Your User Profile:</b> {{ profile }}
+
+{% endblock %}

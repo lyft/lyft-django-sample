@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load jsonify %}
+
+{% block title %}Request a Ride{% endblock %}
+
+{% block content %}
+
+<h2>Request a Ride</h2>
+
+<p>This page requests a ride for a user.
+Learn more about requesting rides by reading the
+<a href="https://developer.lyft.com/docs/request" target="_target">ride request</a> documentation.</p>
+
+<form class="form-horizontal" action="/request" method="post">
+{% csrf_token %}
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Ride Type</label>
+    <div class="col-sm-2">
+      <select class="form-control" name="type">
+        {% for t in types.ride_types %}
+        <option value="{{t.ride_type}}">{{t.display_name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Origin</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="o_lat" name="o_lat" value="37.7749">
+    </div>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="o_lng" name="o_lng" value="-122.4194">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Destination</label>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="d_lat" name="d_lat" value="37.8044">
+    </div>
+    <div class="col-sm-2">
+      <input type="text" class="form-control" id="d_lng" name="d_lng" value="-122.2711">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-custom">Request</button>
+    </div>
+  </div>
+
+  {% if response %}
+    {{ response }}
+  {% endif %}
+</form>
+
+<h3>Types</h3>
+
+<div id="response_types"></div>
+
+<script>
+  renderjson.set_show_to_level(4);
+  document.getElementById("response_types").appendChild(
+    {% autoescape off %}
+      renderjson({{types|jsonify}})
+    {% endautoescape %}
+  );
+</script>
+
+<h3>ETA</h3>
+
+<div id="response_eta"></div>
+
+<script>
+  renderjson.set_show_to_level(4);
+  document.getElementById("response_eta").appendChild(
+    {% autoescape off %}
+      renderjson({{eta|jsonify}})
+    {% endautoescape %}
+  );
+</script>
+
+
+{% endblock %}

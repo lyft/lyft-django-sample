@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load jsonify %}
+
+{% block title %}Availability{% endblock %}
+
+{% block script %}
+
+    <script>
+
+      var nearby_drivers = {% autoescape off %}{{drivers.nearby_drivers|jsonify}}{% endautoescape %}
+
+      function initMap() {
+
+        var myLatLng = {lat: {{location.lat}}, lng: {{location.long}}};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 14,
+          center: myLatLng
+        });
+
+        for (var h = 0; h < nearby_drivers.length; h++){
+            var drivers = nearby_drivers[h].drivers;
+            var type = nearby_drivers[h].ride_type;
+
+            for (var i = 0; i < drivers.length; i++){
+
+                locations = drivers[i].locations;
+                console.log(locations);
+                loc = locations[0];
+
+                var position = {lat: loc.lat, lng: loc.lng};
+                console.log(position);
+                var marker = new google.maps.Marker({
+                  position: position,
+                  map: map,
+                  icon: '/static/images/stache.png',
+                  title: type
+                });
+
+            }
+        }
+      }
+    </script>
+
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{settings.GOOGLE_MAPS_JAVASCRIPT_KEY}}&callback=initMap"></script>
+
+{% endblock %}
+
+{% block content %}
+
+<h2>Availability</h2>
+
+<p>This page shows available rides near a given lat/long.
+Learn more about finding nearby drivers via our
+<a href="https://developer.lyft.com/docs/nearby-drivers" target="_target">nearby drivers</a> documentation.</p>
+
+<div id="map-wrapper">
+    <div id="map"></div>
+</div>
+
+<h3>Drivers</h3>
+
+<div id="response_drivers"></div>
+
+<script>
+  renderjson.set_show_to_level(4);
+  document.getElementById("response_drivers").appendChild(
+    {% autoescape off %}
+      renderjson({{drivers|jsonify}})
+    {% endautoescape %}
+  );
+</script>
+
+
+{% endblock %}

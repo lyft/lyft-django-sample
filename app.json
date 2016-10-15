@@ -1,0 +1,41 @@
+{
+	"name":"lyft-django-sample",
+	"description":"Sample Python/Django site for Lyft showcasing OAuth and API calls. ",
+	"repository":"https://github.com/lyft/lyft-django-sample",
+	"addons": ["heroku-postgresql:hobby-dev"],
+    "buildpacks": [
+      {
+        "url": "https://github.com/heroku/heroku-buildpack-python"
+      }
+    ],
+	"keywords":[
+		"python",
+		"django",
+		"template",
+		"skeleton"
+	],
+	"env":{
+		"DJANGO_SECRET_KEY":{
+			"description":"A randomly generated secret to secure your Django installation",
+			"generator":"secret"
+		},
+		"LYFT_KEY":{
+			"description":"Lyft Client ID (Visit https://www.lyft.com/developers/manage)",
+			"value":"",
+			"required":true
+		},
+		"LYFT_SECRET":{
+			"description":"Lyft Client Secret",
+			"value":"",
+			"required":true
+		},
+		"GOOGLE_MAPS_JAVASCRIPT_KEY":{
+			"description":"Google Maps Javascript API Key (Visit https://developers.google.com/maps/documentation/javascript/)",
+			"value":"",
+			"required":true
+		}
+	},
+	"scripts":{
+		"postdeploy":"python manage.py makemigrations home --noinput; python manage.py migrate --fake-initial; python manage.py makemigrations --noinput; python manage.py migrate --noinput"
+	}
+}

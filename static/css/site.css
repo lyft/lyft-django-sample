@@ -1,0 +1,28 @@
+.btn-custom {
+  background-color: hsl(312, 80%, 48%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#dc18b5", endColorstr="#dc18b5");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#dc18b5), to(#dc18b5));
+  background-image: -moz-linear-gradient(top, #dc18b5, #dc18b5);
+  background-image: -ms-linear-gradient(top, #dc18b5, #dc18b5);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #dc18b5), color-stop(100%, #dc18b5));
+  background-image: -webkit-linear-gradient(top, #dc18b5, #dc18b5);
+  background-image: -o-linear-gradient(top, #dc18b5, #dc18b5);
+  background-image: linear-gradient(#dc18b5, #dc18b5);
+  border-color: #dc18b5 #dc18b5 hsl(312, 80%, 48%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.00);
+  -webkit-font-smoothing: antialiased;
+}
+
+#map-wrapper {
+    height: 600px;
+    width: 100%;
+    min-width:400px;
+    background-color: #EEE;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}

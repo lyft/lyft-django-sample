@@ -152,9 +152,29 @@ Confirm successful execution by viewing the output in the Heroku app logs.
 
 Notes
 ============
+
+Conflicts with `six` package
+--------
+
+If you install the required packages and see a problem installing the `six` package, it may look like this:
+
+    Uninstalling a distutils installed project (six) has been deprecated and will be removed in a future version. This is due to the fact that uninstalling a distutils project will only partially uninstall the project.
+
+Alternatively, you may encounter a runtime error when starting the server:
+
+    'Module_six_moves_urllib_parse' object has no attribute 'urlparse'
+
+In either case, you may need to add 'export PYTHONPATH="/Library/Python/2.7/site-packages"' to your .bash_profile to fix. See the below post for more information:
+
+    https://github.com/ctberthiaume/gdcp/issues/11
+
+Date/Time discrepancies
+--------
+
 If you receive a 401 at login/Lyft it is most likely caused by a datetime discrepancy between the server making the requst and the Lyft server.
 
 Use NTP to sync time on your server to compensate for the dift.
 
 If you are getting this error on OSX, toggle the "set time zone" checkbox off and back on in Date & Time system preferences for a manual and temporary fix. It has been reported that OSX 10.9 Mavericks has an issue with time drift.
+
 

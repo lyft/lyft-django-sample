@@ -87,8 +87,8 @@ def rides(request):
     api, options = get_lyft(request.user)
     response = None
 
-    start_time = datetime.datetime.now() - datetime.timedelta(days=90)
-    rides = api.User.get_rides(start_time=start_time, _request_options=options).result(timeout=TIMEOUT)
+    start_time = datetime.datetime.now() - datetime.timedelta(days=180)
+    rides = api.User.get_rides(start_time=start_time, limit=50, _request_options=options).result(timeout=TIMEOUT)
 
     context = {'request': request, 'response': response, 'rides': rides}
     return render_to_response('rides.html', context, context_instance=RequestContext(request))

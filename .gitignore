@@ -6,3 +6,4 @@ app/settings_my.py
 .idea/
 fabfile.py
 db.sqlite3
+src/

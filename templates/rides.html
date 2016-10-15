@@ -20,6 +20,7 @@ Learn more about listing rides via our
     <th>Pickup</th>
     <th>Dropoff</th>
     <th>Vehicle</th>
+    <th>Status</th>
     <th>Price</th>
   </tr>
   {% if rides.ride_history.0 %}
@@ -40,6 +41,7 @@ Learn more about listing rides via our
         <br>
         <img src="{{r.vehicle.image_url}}" class="thumbnail pull-left" height="60">
       </td>
+      <td>{{r.status}}</td>
       <td>{{r.price.amount}} {{r.price.currency}} ({{r.price.description}})</td>
     </tr>
     {% endfor %}

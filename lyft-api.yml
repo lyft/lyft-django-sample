@@ -933,7 +933,6 @@ definitions:
       - first_name
       - phone_number
       - rating
-      - image_url
     properties:
       first_name:
         type: string
@@ -957,11 +956,9 @@ definitions:
   VehicleDetail:
     type: object
     required:
-      - make
       - model
       - year
       - license_plate
-      - license_plate_state
       - color
       - image_url
     properties:

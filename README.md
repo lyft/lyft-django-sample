@@ -54,7 +54,7 @@ Getting Started
 
     GOOGLE_MAPS_JAVASCRIPT_KEY = ''
 
-- To initialize your database, run the from the `lyft-example` directory:
+- To initialize your database, run the from the `lyft-django-sample` directory:
 
   `python manage.py makemigrations --settings=app.settings_my`
 
@@ -66,7 +66,7 @@ Getting Started
 
   `python manage.py createsuperuser --settings=app.settings_my`
 
-- To start the server, run the following from the `lyft-example` directory:
+- To start the server, run the following from the `lyft-django-sample` directory:
 
   `fab start`
 

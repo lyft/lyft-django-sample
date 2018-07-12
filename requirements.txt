@@ -1,6 +1,6 @@
 Django==1.9.1
 dj-database-url==0.3.0
-gunicorn==19.1.1
+gunicorn==19.9.0
 psycopg2==2.5.1
 -e git://github.com/iampark/python-social-auth.git#egg=python-social-auth
 bravado

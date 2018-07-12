@@ -1,3 +1,7 @@
+# DEPRECATION NOTICE
+
+Please note that this repo is deprecated and is no longer officially supported by Lyft.
+
 Lyft API Samples
 =================
 
